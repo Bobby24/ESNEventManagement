@@ -1,23 +1,21 @@
-public class Workshop : Event 
+namespace EventManagementSystem
 {
-    public string Topic { get; set; } 
-
-    public Workshop(string name, DateTime date, string location, string description, int capacity, string topic) 
-        : base(name, date, location, description, capacity) 
+    public class Workshop : Events
     {
-        Topic = topic; 
-    }
+        public string Instructor { get; set; }
+        public int Duration { get; set; } // Duration in hours
 
-    public override void Register(Student student) 
-    {
-        if (!IsFull()) 
+        public Workshop(string name, DateTime date, string location, string instructor, int duration)
+            : base(name, date, location)
         {
-            RegisteredStudents.Add(student); 
-            Console.WriteLine($"{student.Name} registered for the {this.Name} workshop."); 
-        } 
-        else 
-        {
-            Console.WriteLine($"Workshop is full. {student.Name} cannot register."); 
+            Instructor = instructor;
+            Duration = duration;
         }
+
+        /*public override void DisplayEventInfo()
+        {
+            base.DisplayEventInfo();
+            Console.WriteLine($"Instructor: {Instructor}, Duration: {Duration} hours");
+        }*/
     }
 }
